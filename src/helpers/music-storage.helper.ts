@@ -27,6 +27,9 @@ export const saveMusicToStorage = {
     const allowedMimeTypes: validMimeType[] = validMimeTypes;
     allowedMimeTypes.includes(file.mimetype) ? cb(null, true) : cb(null, false);
   },
+  limits: {
+    fileSize: 52428800,
+  },
 };
 
 export const isFileExtensionSafe = (
