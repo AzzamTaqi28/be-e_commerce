@@ -9,12 +9,12 @@ import { from, Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 type validFileExtension = 'mp4' | 'mkv';
-type validMimeType = 'video/mp4' | 'video/mkv'
+type validMimeType = 'video/mp4' | 'video/x-matroska'
 
 const validFileExtensions: validFileExtension[] = ['mp4', 'mkv'];
 const validMimeTypes: validMimeType[] = [
   'video/mp4',
-  'video/mkv',
+  'video/x-matroska',
 ];
 
 export const saveVideoToStorage = {

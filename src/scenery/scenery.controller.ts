@@ -38,7 +38,6 @@ export class SceneryController {
     @Body('theme') theme: string,
   ): Observable<any> {
     const fileName = file?.filename;
-    console.log(file);
 
     if (!fileName) throw new BadRequestException('File must be mp4/mkv!');
 

@@ -6,7 +6,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Scenery } from './entity/scenery.entity';
-import { query } from 'express';
 
 @Injectable()
 export class SceneryService {
