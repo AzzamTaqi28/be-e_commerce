@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 const fs = require('fs');
 const FileType = require('file-type');
 
-import path = require('path');
+import path from 'path';
 import { from, Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 

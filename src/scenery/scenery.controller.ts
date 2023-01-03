@@ -11,8 +11,6 @@ import {
   Body,
   Get,
   Param,
-  Res,
-  StreamableFile,
 } from '@nestjs/common';
 import {
   isFileExtensionSafe,
@@ -22,8 +20,7 @@ import {
 import { SceneryService } from './scenery.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { join } from 'path';
-import { Observable, of, switchMap, map } from 'rxjs';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { Observable, switchMap } from 'rxjs';
 import { BadRequestException } from '@nestjs/common/exceptions';
 
 // @UseGuards(JwtAuthGuard)
@@ -68,6 +65,6 @@ export class SceneryController {
 
   @Get('/:id')
   async getTheme(@Param('id') id: number) {
-    return await this.sceneryService.findOne(id)
+    return await this.sceneryService.findOne(id);
   }
 }
