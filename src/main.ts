@@ -10,8 +10,8 @@ async function bootstrap() {
   app.setGlobalPrefix('api/v1');
   app.enableCors();
   app.useStaticAssets(join(__dirname, '..', 'file-upload'), {
-    prefix: '/file-upload/',
+    prefix: '/file-upload',
   });
-  await app.listen(3000);
+  await app.listen(3001);
 }
 bootstrap();

@@ -22,8 +22,9 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { join } from 'path';
 import { Observable, switchMap } from 'rxjs';
 import { BadRequestException } from '@nestjs/common/exceptions';
+import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
-// @UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard)
 @Controller('scenery')
 export class SceneryController {
   constructor(private sceneryService: SceneryService) {}

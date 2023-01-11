@@ -55,9 +55,9 @@ export class UsersService {
 
     const insertedUser = await this.usersRepository.insert(newUser);
 
+    
 
     return {
-      createdUser: newUser,
       message: 'User created successfully',
       access_token: this.jwtService.sign({
         ...newUser,
