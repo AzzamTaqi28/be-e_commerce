@@ -41,7 +41,7 @@ export class UsersService {
 
     if (userCheck) {
       if (userCheck.email === user.email) {
-        throw new BadRequestException('Email already Used');
+        throw new BadRequestException('Email already exist');
       }
     }
 

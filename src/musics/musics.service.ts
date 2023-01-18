@@ -41,8 +41,11 @@ export class MusicsService {
     const offset = perpage * (page - 1);
     const query = await this.musicRepository
       .createQueryBuilder('musics')
-      .where('musics.createdBy = :userId', { userId })
-      .orWhere('musics.byAdmin = :byAdmin', { byAdmin: 1 });
+      .where(
+        `musics.createdBy = :userId 
+      OR musics.byAdmin = :byAdmin`,
+      )
+      .setParameters({ userId, byAdmin: true });
 
     if (filter) {
       query.andWhere(
@@ -106,10 +109,10 @@ export class MusicsService {
       .getOne();
     const musicFolderPath = join(process.cwd(), './file-upload/music');
     const fullImagePath = join(musicFolderPath + '/' + music.path);
-    
+
     const deletedMusic = await this.musicRepository.delete(id);
     removeFile(fullImagePath);
-    
+
     return deletedMusic;
   }
 }

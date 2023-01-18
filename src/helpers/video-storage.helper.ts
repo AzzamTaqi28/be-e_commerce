@@ -9,23 +9,21 @@ import { from, Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 type validFileExtension = 'mp4' | 'mkv';
-type validMimeType = 'video/mp4' | 'video/x-matroska'
+type validMimeType = 'video/mp4' | 'video/x-matroska';
 
 const validFileExtensions: validFileExtension[] = ['mp4', 'mkv'];
-const validMimeTypes: validMimeType[] = [
-  'video/mp4',
-  'video/x-matroska',
-];
+const validMimeTypes: validMimeType[] = ['video/mp4', 'video/x-matroska'];
 
 export const saveVideoToStorage = {
   storage: diskStorage({
     destination: './file-upload/videos',
     filename: (req, file, cb) => {
-      const fileExtension: string = path.extname(file.originalname);
+      const split = file.originalname.split('.');
+      const splitLength = split.length;
+      const fileExtension: string = split[splitLength - 1];
       const fileName: string = uuidv4() + fileExtension;
       cb(null, fileName);
     },
-    
   }),
   fileFilter: (req, file, cb) => {
     const allowedMimeTypes: validMimeType[] = validMimeTypes;

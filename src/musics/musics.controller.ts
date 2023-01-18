@@ -11,8 +11,6 @@ import {
   UseGuards,
   UseInterceptors,
 } from '@nestjs/common';
-const fs = require('fs');
-const FileType = require('file-type');
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { MusicsService } from './musics.service';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -23,7 +21,6 @@ import {
   isFileExtensionSafe,
   removeFile,
 } from 'src/helpers/music-storage.helper';
-import { title } from 'process';
 import { CurrentUser } from 'src/decorators/current-user.decorator';
 import { Delete, Get, Param, Patch, Query, Res } from '@nestjs/common/decorators';
 import { ParseIntPipe } from '@nestjs/common/pipes';
@@ -36,7 +33,7 @@ export class MusicsController {
 
   @Post('upload')
   @UseInterceptors(FileInterceptor('file', saveMusicToStorage))
-  uploadImage(
+  uploadMusic(
     @UploadedFile() file: Express.Multer.File,
     @Body('title') title: string,
     @Body('genre') genre: string,
@@ -44,13 +41,10 @@ export class MusicsController {
     @CurrentUser() user: any,
   ): Observable<any> {
     const fileName = file?.filename;
-    console.log(file);
 
     if (!fileName) throw new BadRequestException('File must be mp3!');
-    console.log(user.userId);
     const musicFolderPath = join(process.cwd(), './file-upload/music');
     const fullImagePath = join(musicFolderPath + '/' + file.filename);
-    console.log(fullImagePath);
     return isFileExtensionSafe(fullImagePath).pipe(
       switchMap((isFileLegit: boolean) => {
         if (isFileLegit && title && genre && artist) {

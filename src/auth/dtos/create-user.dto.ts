@@ -7,7 +7,7 @@ export class CreateUserDTO {
     email: string;
 
     @IsString()
-    @Length(6, 20)
+    @Length(6)
     name: string;
 
     @IsString()

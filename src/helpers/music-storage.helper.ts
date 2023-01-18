@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 const fs = require('fs');
 const FileType = require('file-type');
 
-import path from 'path';
 import { from, Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
@@ -18,7 +17,9 @@ export const saveMusicToStorage = {
   storage: diskStorage({
     destination: './file-upload/music',
     filename: (req, file, cb) => {
-      const fileExtension: string = path.extname(file.originalname);
+      const split = file.originalname.split('.');
+      const splitLength = split.length;
+      const fileExtension: string = split[splitLength - 1];
       const fileName: string = uuidv4() + fileExtension;
       cb(null, fileName);
     },

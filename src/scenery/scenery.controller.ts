@@ -31,7 +31,7 @@ export class SceneryController {
 
   @Post('upload')
   @UseInterceptors(FileInterceptor('file', saveVideoToStorage))
-  uploadImage(
+  uploadScenery(
     @UploadedFile() file: Express.Multer.File,
     @Body('theme') theme: string,
   ): Observable<any> {
