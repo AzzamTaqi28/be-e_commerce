@@ -1,14 +1,14 @@
 import { Type } from 'class-transformer';
-import { IsDate, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsBoolean, IsDate, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpdateTodosDto {
   @IsString()
   @IsOptional()
   todos: string;
 
-  @IsNumber()
+  @IsBoolean()
   @IsOptional()
-  status: number;
+  status: boolean;
 
   @Type(() => Date)
   @IsDate()

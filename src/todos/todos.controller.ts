@@ -25,8 +25,7 @@ export class TodosController {
   constructor(private todoService: TodosService) {}
 
   @Post('create')
-  async create(@Body() createTodosDto: CreateTodosDto, @CurrentUser() user) {
-    
+  async create(@Body() createTodosDto: CreateTodosDto, @CurrentUser() user: any) {
     return this.todoService.create(createTodosDto, user.userId);
   }
   

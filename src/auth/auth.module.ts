@@ -7,12 +7,17 @@ import { LocalStrategy } from './strategy/local.auth';
 import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './strategy/jwt.auth';
 import { UsersModule } from 'src/users/users.module';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
   imports: [
-    JwtModule.register({
-      secret: 'secretKey',
-      signOptions: { expiresIn: '7d' },
+    JwtModule.registerAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: async (configService: ConfigService) => ({
+        secret: process.env.JWT_SECRET,
+        signOptions: { expiresIn: process.env.JWT_EXPIRES_IN },
+      }),
     }),
     PassportModule,
     UsersModule,

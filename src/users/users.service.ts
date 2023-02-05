@@ -4,15 +4,12 @@ https://docs.nestjs.com/providers#services
 
 import {
   BadRequestException,
-  Inject,
   Injectable,
-  forwardRef,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entity/user.entity';
 import * as bcrypt from 'bcrypt';
-import { AuthService } from 'src/auth/auth.service';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
