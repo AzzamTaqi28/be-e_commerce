@@ -22,6 +22,7 @@ export class TodosService {
       ...todo,
       user,
     });
+    
     const savedTodo = await this.todoRepository.save(newTodo);
     delete savedTodo.user.password;
     return savedTodo;
